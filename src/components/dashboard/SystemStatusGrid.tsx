@@ -40,14 +40,16 @@ export default function SystemStatusGrid({ components, onComponentClick }: Syste
           <button
             key={baseType}
             onClick={() => onComponentClick(mainComp)}
-            className="touch-target bg-white/5 rounded-lg p-4 hover:bg-white/10 transition-all flex flex-col items-center gap-2"
+            className="touch-target glass rounded-xl p-5 card-hover flex flex-col items-center gap-3 group"
           >
-            <span className="text-2xl">{getComponentIcon(mainComp.type as any)}</span>
-            <span className="text-sm font-medium text-center">
+            <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
+              {getComponentIcon(mainComp.type as any)}
+            </div>
+            <span className="text-sm font-semibold text-center text-white/90">
               {getComponentDisplayName(mainComp.type)}
             </span>
-            <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full ${getStatusDotColor(worstStatus)}`} />
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+              <div className={`w-2 h-2 rounded-full ${getStatusDotColor(worstStatus)} animate-pulse`} />
               <span className="text-lg font-bold">{avgHealth}%</span>
             </div>
           </button>

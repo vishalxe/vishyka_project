@@ -12,8 +12,8 @@ export default function CriticalAlertOverlay({ alert, onAcknowledge }: CriticalA
   const component = vehicleData.health.components.find((c) => c.id === alert.componentId);
 
   return (
-    <div className="fixed inset-0 bg-status-critical/95 backdrop-blur-sm z-50 flex items-center justify-center p-6">
-      <div className="bg-black/90 rounded-lg p-8 max-w-2xl w-full border-4 border-status-critical">
+    <div className="fixed inset-0 bg-status-critical/95 backdrop-blur-md z-50 flex items-center justify-center p-6 animate-fade-in">
+      <div className="bg-slate-900/95 backdrop-blur-xl rounded-2xl p-8 max-w-2xl w-full border-4 border-status-critical shadow-2xl shadow-status-critical/50">
         <div className="flex items-start gap-6 mb-6">
           <AlertTriangle className="w-16 h-16 text-status-critical flex-shrink-0" />
           <div className="flex-1">
@@ -29,7 +29,7 @@ export default function CriticalAlertOverlay({ alert, onAcknowledge }: CriticalA
           </div>
         </div>
 
-        <div className="bg-status-critical/20 rounded-lg p-6 mb-6">
+        <div className="bg-status-critical/20 rounded-xl p-6 mb-6 border border-status-critical/30">
           <h3 className="text-2xl font-bold mb-4">PULL OVER SAFELY NOW</h3>
           <ol className="space-y-3 text-lg">
             <li className="flex items-start gap-3">
@@ -54,7 +54,7 @@ export default function CriticalAlertOverlay({ alert, onAcknowledge }: CriticalA
         <div className="flex gap-4">
           <button
             onClick={onAcknowledge}
-            className="flex-1 py-4 bg-status-critical text-white rounded-lg hover:bg-status-critical/90 transition-all font-bold text-xl touch-target"
+            className="flex-1 py-4 bg-status-critical text-white rounded-xl hover:bg-status-critical/90 transition-all font-bold text-xl touch-target shadow-lg shadow-status-critical/50 hover:shadow-xl hover:scale-105 active:scale-95"
           >
             I'VE STOPPED ✓
           </button>

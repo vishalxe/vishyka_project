@@ -14,7 +14,7 @@ export default function ComponentDetailPanel({ component, onClose }: ComponentDe
   const healthColor = getHealthColor(component.health);
 
   return (
-    <div className="fixed right-0 top-0 h-full w-[40%] bg-black/95 backdrop-blur-lg border-l border-white/10 p-6 overflow-y-auto z-50 animate-slide-in">
+    <div className="fixed right-0 top-0 h-full w-[40%] glass-strong border-l border-white/20 p-8 overflow-y-auto z-50 animate-slide-in shadow-2xl">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-2xl font-bold">{component.name}</h2>
         <button
@@ -29,21 +29,21 @@ export default function ComponentDetailPanel({ component, onClose }: ComponentDe
       <div className="mb-6">
         <div className="flex items-center justify-between mb-4">
           <span className="text-lg font-semibold">Health Score</span>
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
             <span className={`text-3xl font-bold ${healthColor}`}>{component.health}%</span>
-            <div className={`w-3 h-3 rounded-full ${getStatusDotColor(component.status)}`} />
+            <div className={`w-3 h-3 rounded-full ${getStatusDotColor(component.status)} animate-pulse`} />
           </div>
         </div>
         <div className="h-3 bg-white/10 rounded-full overflow-hidden">
           <div
-            className={`h-full ${healthColor.replace('text-', 'bg-')} rounded-full transition-all`}
+            className={`h-full ${healthColor.replace('text-', 'bg-')} rounded-full transition-all shadow-lg`}
             style={{ width: `${component.health}%` }}
           />
         </div>
       </div>
 
       {/* Distance Traveled */}
-      <div className="mb-6 bg-white/5 rounded-lg p-4">
+      <div className="mb-6 glass rounded-xl p-5">
         <h3 className="text-sm text-white/60 mb-2">Distance Traveled</h3>
         <p className="text-2xl font-bold">
           {component.distanceTraveled.toLocaleString()} miles
@@ -52,7 +52,7 @@ export default function ComponentDetailPanel({ component, onClose }: ComponentDe
       </div>
 
       {/* Temperature */}
-      <div className="mb-6 bg-white/5 rounded-lg p-4">
+      <div className="mb-6 glass rounded-xl p-5">
         <h3 className="text-sm text-white/60 mb-4">Temperature</h3>
         <div className="space-y-3">
           <div>
@@ -93,13 +93,13 @@ export default function ComponentDetailPanel({ component, onClose }: ComponentDe
 
       {/* Service Dates */}
       <div className="mb-6 space-y-3">
-        <div className="bg-white/5 rounded-lg p-3">
+        <div className="glass rounded-xl p-4">
           <h3 className="text-sm text-white/60 mb-1">Last Service</h3>
-          <p className="font-semibold">{new Date(component.lastServiceDate).toLocaleDateString()}</p>
+          <p className="font-semibold text-lg">{new Date(component.lastServiceDate).toLocaleDateString()}</p>
         </div>
-        <div className="bg-white/5 rounded-lg p-3">
+        <div className="glass rounded-xl p-4">
           <h3 className="text-sm text-white/60 mb-1">Next Service Due</h3>
-          <p className="font-semibold">{new Date(component.nextServiceDue).toLocaleDateString()}</p>
+          <p className="font-semibold text-lg">{new Date(component.nextServiceDue).toLocaleDateString()}</p>
         </div>
       </div>
 
@@ -109,9 +109,9 @@ export default function ComponentDetailPanel({ component, onClose }: ComponentDe
           <h3 className="text-lg font-semibold mb-4">Component Metrics</h3>
           <div className="space-y-2">
             {Object.entries(component.specificMetrics).map(([key, value]) => (
-              <div key={key} className="flex justify-between bg-white/5 rounded p-2">
+              <div key={key} className="flex justify-between glass rounded-lg p-3">
                 <span className="text-sm text-white/60 capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>
-                <span className="font-semibold">{typeof value === 'number' ? value.toFixed(1) : value}</span>
+                <span className="font-semibold text-white/90">{typeof value === 'number' ? value.toFixed(1) : value}</span>
               </div>
             ))}
           </div>
@@ -120,10 +120,10 @@ export default function ComponentDetailPanel({ component, onClose }: ComponentDe
 
       {/* Actions */}
       <div className="space-y-3">
-        <button className="w-full py-3 bg-green-light/20 text-green-light rounded-lg hover:bg-green-light/30 transition-all font-semibold">
+        <button className="button-primary w-full">
           View Full Diagnostics
         </button>
-        <button className="w-full py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all">
+        <button className="button-secondary w-full">
           Schedule Service
         </button>
       </div>

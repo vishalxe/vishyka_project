@@ -15,42 +15,44 @@ export default function TopStatusBar() {
   });
 
   return (
-    <div className="h-[60px] bg-black/30 backdrop-blur-sm border-b border-white/10 flex items-center justify-between px-6">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-green-light to-green-dark rounded flex items-center justify-center">
-            <span className="text-xs font-bold">V</span>
+    <div className="h-[70px] glass-strong border-b border-white/10 flex items-center justify-between px-8 shadow-lg shadow-black/20">
+      <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/30">
+            <span className="text-sm font-bold text-white">V</span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-sm font-medium">Health Score:</span>
-            <span className={`text-lg font-bold ${healthColor}`}>{health}%</span>
-            <div className={`w-2 h-2 rounded-full ${healthColor.replace('text-', 'bg-')}`} />
+          <div className="flex items-center gap-3">
+            <span className="text-sm font-medium text-white/70">Health Score</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+              <span className={`text-xl font-bold ${healthColor}`}>{health}%</span>
+              <div className={`w-2.5 h-2.5 rounded-full ${healthColor.replace('text-', 'bg-')} animate-pulse`} />
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex items-center gap-6">
-        <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4" />
-          <span className="text-sm">{currentTime}</span>
+      <div className="flex items-center gap-5">
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+          <Clock className="w-4 h-4 text-white/70" />
+          <span className="text-sm font-medium">{currentTime}</span>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm">72°F</span>
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+          <span className="text-sm font-medium">72°F</span>
         </div>
-        <div className="flex items-center gap-2">
-          <Wifi className="w-4 h-4" />
-          <div className="w-2 h-2 rounded-full bg-status-excellent" />
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+          <Wifi className="w-4 h-4 text-status-excellent" />
+          <div className="w-2 h-2 rounded-full bg-status-excellent animate-pulse" />
         </div>
-        <div className="flex items-center gap-2">
-          <Battery className="w-4 h-4" />
-          <span className="text-sm">89%</span>
+        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/5 rounded-lg border border-white/10">
+          <Battery className="w-4 h-4 text-white/70" />
+          <span className="text-sm font-medium">89%</span>
         </div>
         <AlertBadge />
-        <button className="touch-target flex items-center justify-center">
-          <Settings className="w-5 h-5" />
+        <button className="touch-target flex items-center justify-center p-2 rounded-lg hover:bg-white/10 transition-all duration-200">
+          <Settings className="w-5 h-5 text-white/70 hover:text-white transition-colors" />
         </button>
-        <button className="touch-target flex items-center justify-center">
-          <User className="w-5 h-5" />
+        <button className="touch-target flex items-center justify-center p-2 rounded-lg hover:bg-white/10 transition-all duration-200">
+          <User className="w-5 h-5 text-white/70 hover:text-white transition-colors" />
         </button>
       </div>
     </div>

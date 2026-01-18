@@ -19,28 +19,36 @@ export default function SmartRecommendationsCard() {
   ];
 
   return (
-    <div className="bg-white/5 rounded-lg p-4 border border-white/10">
-      <div className="flex items-center gap-2 mb-4">
-        <MapPin className="w-5 h-5 text-green-light" />
+    <div className="glass rounded-2xl p-5 card-hover">
+      <div className="flex items-center gap-3 mb-4">
+        <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/30">
+          <MapPin className="w-5 h-5 text-white" />
+        </div>
         <h3 className="text-lg font-semibold">Nearby</h3>
       </div>
 
       <div className="space-y-3">
         {recommendations.map((rec, idx) => (
-          <div key={idx} className="bg-white/5 rounded p-3">
-            <div className="flex items-start justify-between mb-2">
+          <div key={idx} className="bg-white/5 rounded-xl p-4 border border-white/10 hover:bg-white/10 transition-all">
+            <div className="flex items-start justify-between mb-3">
               <div>
-                <p className="font-medium">{rec.name}</p>
-                <p className="text-sm text-white/60">{rec.distance}</p>
+                <p className="font-semibold text-white/90">{rec.name}</p>
+                <p className="text-sm text-white/60 mt-1">{rec.distance}</p>
               </div>
               {rec.open && (
-                <span className="text-xs bg-status-excellent/20 text-status-excellent px-2 py-1 rounded">
+                <span className="text-xs bg-status-excellent/20 text-status-excellent px-2.5 py-1 rounded-lg font-semibold border border-status-excellent/30">
                   Open
                 </span>
               )}
             </div>
-            {rec.price && <p className="text-sm text-white/80 mb-2">{rec.price}</p>}
-            <button className="w-full flex items-center justify-center gap-2 p-2 bg-green-light/20 text-green-light rounded hover:bg-green-light/30 transition-all text-sm">
+            {rec.price && <p className="text-sm text-white/80 mb-3 font-medium">{rec.price}</p>}
+            <button 
+              onClick={() => {
+                // In a real app, this would open navigation
+                alert(`Navigating to ${rec.name}...`);
+              }}
+              className="w-full flex items-center justify-center gap-2 py-2.5 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-all text-sm font-semibold border border-green-500/30"
+            >
               <Navigation className="w-4 h-4" />
               Navigate
             </button>

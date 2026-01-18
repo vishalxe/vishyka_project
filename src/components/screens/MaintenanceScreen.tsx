@@ -16,10 +16,10 @@ export default function MaintenanceScreen() {
   };
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-8 space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Maintenance Schedule</h1>
-        <button className="flex items-center gap-2 px-4 py-2 bg-green-light/20 text-green-light rounded-lg hover:bg-green-light/30 transition-all touch-target">
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Maintenance Schedule</h1>
+        <button className="button-primary flex items-center gap-2 touch-target">
           <Plus className="w-5 h-5" />
           <span>Add Service</span>
         </button>
@@ -42,7 +42,7 @@ export default function MaintenanceScreen() {
                   : 'text-status-warning';
 
               return (
-                <div key={prediction.id} className="bg-white/5 rounded-lg p-6 border border-white/10">
+                <div key={prediction.id} className="glass rounded-2xl p-6 card-hover">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-start gap-4">
                       <Calendar className="w-6 h-6 text-green-light mt-1" />
@@ -76,7 +76,7 @@ export default function MaintenanceScreen() {
                     </div>
                   </div>
 
-                  <button className="w-full py-2 bg-green-light/20 text-green-light rounded-lg hover:bg-green-light/30 transition-all font-semibold">
+                  <button className="button-primary w-full">
                     Schedule Service
                   </button>
                 </div>
@@ -95,7 +95,7 @@ export default function MaintenanceScreen() {
               return (
                 <div
                   key={record.id}
-                  className="bg-white/5 rounded-lg p-4 flex items-center justify-between"
+                  className="glass rounded-xl p-4 flex items-center justify-between card-hover"
                 >
                   <div className="flex items-center gap-4">
                     <CheckCircle2 className="w-6 h-6 text-status-excellent" />

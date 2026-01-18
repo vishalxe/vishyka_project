@@ -43,20 +43,20 @@ export default function DiagnosticsScreen() {
   const healthStatus = getHealthStatus(overallHealth);
 
   return (
-    <div className="p-6 space-y-6">
+    <div className="p-8 space-y-6 animate-fade-in">
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Diagnostics</h1>
+        <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Diagnostics</h1>
         <button
           onClick={handleScan}
           disabled={isScanning}
-          className="flex items-center gap-2 px-6 py-3 bg-green-light/20 text-green-light rounded-lg hover:bg-green-light/30 transition-all disabled:opacity-50 touch-target"
+          className="button-primary flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed touch-target"
         >
           <RefreshCw className={`w-5 h-5 ${isScanning ? 'animate-spin' : ''}`} />
-          <span className="font-semibold">Scan Now</span>
+          <span>Scan Now</span>
         </button>
       </div>
 
-      <div className="bg-white/5 rounded-lg p-6">
+      <div className="glass rounded-2xl p-6">
         <div className="flex items-center gap-4 mb-4">
           <span className="text-2xl font-bold">All Systems:</span>
           <span className={`text-2xl font-bold ${healthColor}`}>{healthStatus.toUpperCase()}</span>
@@ -81,7 +81,7 @@ export default function DiagnosticsScreen() {
           const isExpanded = expandedComponents.has(baseType);
 
           return (
-            <div key={baseType} className="bg-white/5 rounded-lg overflow-hidden">
+            <div key={baseType} className="glass rounded-xl overflow-hidden card-hover">
               <button
                 onClick={() => toggleExpand(baseType)}
                 className="w-full p-6 flex items-center justify-between hover:bg-white/5 transition-all"
@@ -115,7 +115,7 @@ export default function DiagnosticsScreen() {
                   {components.map((component) => (
                     <div
                       key={component.id}
-                      className="bg-white/5 rounded p-4 space-y-2"
+                      className="glass rounded-xl p-4 space-y-2 cursor-pointer hover:bg-white/10 transition-all"
                       onClick={() => setSelectedComponent(component)}
                     >
                       <div className="flex items-center justify-between">

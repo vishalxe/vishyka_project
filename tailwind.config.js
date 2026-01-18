@@ -7,16 +7,30 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Green gradient theme (from brand guidelines)
-        'green-dark': '#0d4d2d',      // Dark forest green
-        'green-light': '#00ff88',      // Bright emerald
-        'accent-pink': '#FF0F01',
-        'accent-mint': '#88FF00',
-        // Status colors
-        'status-excellent': '#22c55e',  // Green (90-100%)
-        'status-good': '#eab308',       // Yellow (70-89%)
-        'status-warning': '#f97316',    // Orange (50-69%)
-        'status-critical': '#ef4444',   // Red (<50%)
+        // Professional color palette
+        'green-dark': '#064e3b',      // Dark emerald
+        'green-light': '#10b981',      // Emerald-500
+        'accent-pink': '#ec4899',
+        'accent-mint': '#34d399',
+        // Status colors with better contrast
+        'status-excellent': '#10b981',  // Emerald-500 (90-100%)
+        'status-good': '#fbbf24',       // Amber-400 (70-89%)
+        'status-warning': '#f97316',    // Orange-500 (50-69%)
+        'status-critical': '#ef4444',   // Red-500 (<50%)
+        // Additional professional colors
+        'slate': {
+          50: '#f8fafc',
+          100: '#f1f5f9',
+          200: '#e2e8f0',
+          300: '#cbd5e1',
+          400: '#94a3b8',
+          500: '#64748b',
+          600: '#475569',
+          700: '#334155',
+          800: '#1e293b',
+          900: '#0f172a',
+          950: '#020617',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

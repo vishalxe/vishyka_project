@@ -48,11 +48,11 @@ export default function SettingsScreen() {
   };
 
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-3xl font-bold">Settings</h1>
+    <div className="p-8 space-y-6 animate-fade-in">
+      <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">Settings</h1>
 
-      <div className="space-y-4">
-        <div className="bg-white/5 rounded-lg p-4">
+      <div className="space-y-5">
+        <div className="glass rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-4">Alerts & Notifications</h2>
           <div className="space-y-0">
             <Toggle
@@ -78,7 +78,7 @@ export default function SettingsScreen() {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-lg p-4">
+        <div className="glass rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-4">Smart Features</h2>
           <div className="space-y-0">
             <Toggle
@@ -104,7 +104,7 @@ export default function SettingsScreen() {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-lg p-4">
+        <div className="glass rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-4">Voice Assistant</h2>
           <div className="space-y-3">
             <div className="flex items-center justify-between py-3 border-b border-white/10">
@@ -125,7 +125,7 @@ export default function SettingsScreen() {
           </div>
         </div>
 
-        <div className="bg-white/5 rounded-lg p-4">
+        <div className="glass rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-4">Privacy & Data</h2>
           <div className="space-y-0">
             <Toggle
@@ -149,7 +149,7 @@ export default function SettingsScreen() {
           </button>
         </div>
 
-        <div className="bg-white/5 rounded-lg p-4">
+        <div className="glass rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-4">Vehicle Info</h2>
           <div className="space-y-2 text-sm">
             <div className="flex justify-between">
@@ -168,10 +168,10 @@ export default function SettingsScreen() {
         </div>
 
         <div className="flex gap-3">
-          <button className="flex-1 py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all">
+          <button className="button-secondary flex-1">
             Reset to Defaults
           </button>
-          <button className="flex-1 py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-all">
+          <button className="button-secondary flex-1">
             About System
           </button>
         </div>

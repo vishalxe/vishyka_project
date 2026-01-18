@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import TopStatusBar from './components/layout/TopStatusBar';
 import BottomNavBar from './components/layout/BottomNavBar';
 import SplitScreenLayout from './components/layout/SplitScreenLayout';
@@ -23,6 +23,15 @@ function App() {
   const setSelectedComponent = useVehicleStore((state) => state.setSelectedComponent);
   const acknowledgeAlert = useVehicleStore((state) => state.acknowledgeAlert);
   const [acknowledgedCriticalAlert, setAcknowledgedCriticalAlert] = useState<string | null>(null);
+
+  // Listen for navigation events
+  useEffect(() => {
+    const handleNavigate = (event: CustomEvent) => {
+      setActiveTab(event.detail);
+    };
+    window.addEventListener('navigate' as any, handleNavigate);
+    return () => window.removeEventListener('navigate' as any, handleNavigate);
+  }, []);
 
   const handleComponentClick = (component: ComponentData) => {
     setSelectedComponent(component);
@@ -67,45 +76,51 @@ function App() {
   };
 
   return (
-    <div className="h-screen w-screen flex flex-col overflow-hidden">
-      {criticalAlert && (
-        <CriticalAlertOverlay alert={criticalAlert} onAcknowledge={handleAcknowledgeCritical} />
-      )}
-
-      <TopStatusBar />
+    <div className="h-screen w-screen flex flex-col overflow-hidden relative">
+      {/* Background gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-green-950/50 to-slate-900 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.1),transparent_50%)] pointer-events-none" />
       
-      <div className="flex-1 overflow-hidden">
-        {activeTab === 'home' ? (
-          <SplitScreenLayout
-            leftPanel={
-              <div className="h-full flex flex-col gap-4">
-                <div className="flex-1">
-                  <HealthOverview onComponentClick={handleComponentClick} />
-                </div>
-                <div className="h-[400px]">
-                  <Car3DViewer
-                    components={vehicleData.health.components}
-                    onComponentClick={handleComponentClick}
-                  />
-                </div>
-              </div>
-            }
-            rightPanel={
-              <>
-                <VoiceAssistantCard />
-                <CabinEnvironmentCard />
-                <SmartRecommendationsCard />
-              </>
-            }
-          />
-        ) : (
-          <div className="h-full overflow-y-auto">{renderMainContent()}</div>
+      <div className="relative z-10 h-full flex flex-col">
+        {criticalAlert && (
+          <CriticalAlertOverlay alert={criticalAlert} onAcknowledge={handleAcknowledgeCritical} />
         )}
-      </div>
 
-      <ComponentDetailPanel component={selectedComponent} onClose={handleClosePanel} />
-      
-      <BottomNavBar activeTab={activeTab} onTabChange={setActiveTab} />
+        <TopStatusBar />
+        
+        <div className="flex-1 overflow-hidden">
+          {activeTab === 'home' ? (
+            <SplitScreenLayout
+              leftPanel={
+                <div className="h-full flex flex-col gap-6">
+                  <div className="flex-1">
+                    <HealthOverview onComponentClick={handleComponentClick} />
+                  </div>
+                  <div className="h-[400px]">
+                    <Car3DViewer
+                      components={vehicleData.health.components}
+                      onComponentClick={handleComponentClick}
+                    />
+                  </div>
+                </div>
+              }
+              rightPanel={
+                <>
+                  <VoiceAssistantCard />
+                  <CabinEnvironmentCard />
+                  <SmartRecommendationsCard />
+                </>
+              }
+            />
+          ) : (
+            <div className="h-full overflow-y-auto">{renderMainContent()}</div>
+          )}
+        </div>
+
+        <ComponentDetailPanel component={selectedComponent} onClose={handleClosePanel} />
+        
+        <BottomNavBar activeTab={activeTab} onTabChange={setActiveTab} />
+      </div>
     </div>
   );
 }

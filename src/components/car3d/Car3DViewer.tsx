@@ -12,7 +12,7 @@ interface Car3DViewerProps {
 
 export default function Car3DViewer({ components, onComponentClick }: Car3DViewerProps) {
   return (
-    <div className="w-full h-full bg-gradient-to-b from-green-dark/50 to-green-light/20 rounded-lg overflow-hidden">
+    <div className="w-full h-full glass rounded-2xl overflow-hidden shadow-2xl border border-white/10">
       <Canvas shadows>
         <Suspense fallback={null}>
           <PerspectiveCamera makeDefault position={[0, 2, 5]} fov={50} />

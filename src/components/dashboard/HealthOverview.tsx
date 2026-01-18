@@ -15,13 +15,19 @@ export default function HealthOverview({ onComponentClick }: HealthOverviewProps
   const nextMaintenance = vehicleData.maintenancePredictions[0];
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 animate-fade-in">
       {activeAlerts.length > 0 ? (
         <AlertCard alert={activeAlerts[0]} />
       ) : (
         <>
           <div className="text-center">
-            <h2 className="text-2xl font-bold mb-2">Vehicle Health: Excellent ✓</h2>
+            <h2 className="text-3xl font-bold mb-1 bg-gradient-to-r from-white to-white/70 bg-clip-text text-transparent">
+              Vehicle Health: Excellent
+            </h2>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="w-2 h-2 rounded-full bg-status-excellent animate-pulse" />
+              <span className="text-sm text-white/60">All systems operational</span>
+            </div>
             <HealthGauge health={health} size={240} />
           </div>
 
@@ -31,23 +37,37 @@ export default function HealthOverview({ onComponentClick }: HealthOverviewProps
           />
 
           {nextMaintenance && (
-            <div className="bg-white/5 rounded-lg p-4">
-              <h3 className="text-lg font-semibold mb-2">Next Maintenance</h3>
-              <p className="text-sm text-white/80">
+            <div className="glass rounded-2xl p-6 card-hover">
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-xl font-semibold">Next Maintenance</h3>
+                <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center">
+                  <span className="text-green-400 text-lg">🔧</span>
+                </div>
+              </div>
+              <p className="text-base text-white/90 mb-2">
                 {nextMaintenance.serviceType} due in approximately{' '}
-                {Math.ceil(
-                  (new Date(nextMaintenance.predictedDate).getTime() - Date.now()) /
-                    (1000 * 60 * 60 * 24)
-                )}{' '}
+                <span className="font-bold text-green-400">
+                  {Math.ceil(
+                    (new Date(nextMaintenance.predictedDate).getTime() - Date.now()) /
+                      (1000 * 60 * 60 * 24)
+                  )}
+                </span>{' '}
                 days
               </p>
-              <p className="text-xs text-white/60 mt-1">
+              <p className="text-sm text-white/60">
                 Estimated at {nextMaintenance.predictedMileage.toLocaleString()} miles
               </p>
             </div>
           )}
 
-          <button className="w-full py-3 bg-green-light/20 text-green-light rounded-lg hover:bg-green-light/30 transition-all font-semibold">
+          <button 
+            onClick={() => {
+              // Navigate to diagnostics screen
+              const event = new CustomEvent('navigate', { detail: 'diagnostics' });
+              window.dispatchEvent(event);
+            }}
+            className="button-primary w-full"
+          >
             View Full Report
           </button>
         </>
